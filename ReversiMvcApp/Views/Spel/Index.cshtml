@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ReversiMvcApp.Models.Spel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.omschrijving)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.omschrijving)
+            </td>
+            <td>
+                <a asp-action="Join" asp-route-id="@item.token">Join</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,46 @@
+﻿@using System.Security.Claims
+@model IEnumerable<ReversiMvcApp.Models.Spel>
+
+@{
+    ViewData["Title"] = "Home Page";
+
+    ClaimsPrincipal currentUser = this.User;
+    var currentUserId = currentUser.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.omschrijving)
+        </th>
+        <th>
+            Beurt
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.omschrijving)
+            </td>
+            <td>
+                @if (item.status == 0) {
+                    @:Wachten
+                } else {
+                    @if (item.beurt == currentUserId) {
+                        @:Jouw
+                    } else {
+                        @:Hun
+                    }
+                }
+            </td>
+            <td>
+                <a asp-action="Play" asp-controller="Spel" asp-route-id="@item.token">Speel</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,49 @@
+﻿@model ReversiMvcApp.Models.Speler
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Speler</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Guid" />
+            <div class="form-group">
+                <label asp-for="Naam" class="control-label"></label>
+                <input asp-for="Naam" class="form-control" />
+                <span asp-validation-for="Naam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AantalGewonnen" class="control-label"></label>
+                <input asp-for="AantalGewonnen" class="form-control" />
+                <span asp-validation-for="AantalGewonnen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AantalVerloren" class="control-label"></label>
+                <input asp-for="AantalVerloren" class="form-control" />
+                <span asp-validation-for="AantalVerloren" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AantalGelijk" class="control-label"></label>
+                <input asp-for="AantalGelijk" class="form-control" />
+                <span asp-validation-for="AantalGelijk" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
